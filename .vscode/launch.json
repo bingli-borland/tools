@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SampleWebJspApplication<tools>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.bingli.boot.SampleWebJspApplication",
+            "projectName": "tools",
+            "args": ""
+        }
+    ]
+}
