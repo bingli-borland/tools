@@ -23,7 +23,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-//@ServletComponentScan(basePackages = "com.bingli.tools")
+@ServletComponentScan(basePackages = {"com.bingli.tools", "com.bingli.performance"})
 public class SampleWebJspApplication extends SpringBootServletInitializer {
 
 	@Override
