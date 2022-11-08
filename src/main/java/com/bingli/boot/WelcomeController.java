@@ -97,11 +97,10 @@ public class WelcomeController {
         return "tv";
     }
 
-    @GetMapping("/ParseData")
+    @GetMapping("/ParseData1")
     public String parseData(Map<String, Object> model) throws IOException {
-        String datafile = ParseData.class.getResource("/data.txt").getPath();
         List<ArticleBean> rs = new ArrayList<ArticleBean>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(datafile), "UTF-8"));
+        BufferedReader br =new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("/data.txt"),"UTF-8"));
         String line = br.readLine();
         while (line != null) {
             parse(line, rs);

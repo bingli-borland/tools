@@ -21,9 +21,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@ServletComponentScan(basePackages = {"com.bingli.tools", "com.bingli.performance"})
+@EnableWebMvc
+//@ServletComponentScan(basePackages = {"com.bingli.tools", "com.bingli.performance"})
 public class SampleWebJspApplication extends SpringBootServletInitializer {
 
 	@Override

@@ -23,9 +23,8 @@ public class ParseData extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String datafile = ParseData.class.getResource("/data.txt").getPath();
         List<ArticleBean> rs = new ArrayList<ArticleBean>();
-        BufferedReader br =new BufferedReader(new InputStreamReader(new FileInputStream(datafile),"UTF-8"));  
+        BufferedReader br =new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("/data.txt"),"UTF-8"));
         String line = br.readLine();
         while (line != null) {
             parse(line, rs);
