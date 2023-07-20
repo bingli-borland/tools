@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public class GoflywayTool {
     public static void main(String[] args) throws IOException {
-        Document doc = Jsoup.connect("http://tr3.freeair888.club/goflyway%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7/").get();
+        Document doc = Jsoup.connect("https://tr2.freeku9.xyz/Goflyway%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7/").get();
         Element content = doc.getElementById("post-72");
         Elements ps = content.getElementsByTag("p");
         String ip = null;
