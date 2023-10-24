@@ -36,7 +36,7 @@ if %id% == 1 (
 :two
   set id=D:\java\apache-tomee-plus-7.0.0-M3
   echo "java -cp E:\project\tools\target\dependency\*;E:\project\tools\target\classes  com.bingli.tools.GoflywayTool"
-  java -cp E:\project\tools\target\dependency\*;E:\project\tools\target\classes  com.bingli.tools.GoflywayTool
+  java -cp E:\project\tools\target\dependency\*;E:\project\tools\target\classes  com.bingli.tools.GoflywayTool https://t.bku3.xyz/Goflyway免费账号
   goto end
 :end
 cmd /k cd /d %id%
