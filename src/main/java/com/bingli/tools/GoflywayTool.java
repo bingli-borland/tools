@@ -17,12 +17,14 @@ public class GoflywayTool {
     public static void main(String[] args) throws IOException {
         Document doc = Jsoup.connect(args[0]).get();
         Element content = doc.getElementById("post-72");
-        Elements ps = content.getElementsByTag("p");
+        Elements ps = content.getElementsByClass("wp-block-code");
         String ip = null;
         String port = null;
         String pass = null;
-        for (Element p : ps) {
-            String text = p.text();
+        Element code = ps.get(0).getElementsByTag("code").get(0);
+        String[] ss = code.text().split("\n");
+        for (String str: ss) {
+            String text = str;
             if (text != null && text.contains("IP：")) {
                 ip = text.substring(text.indexOf("IP：") + 3);
             }
