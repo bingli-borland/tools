@@ -12,29 +12,35 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GoflywayTool {
     public static void main(String[] args) throws IOException {
         Document doc = Jsoup.connect(args[0]).get();
         Element content = doc.getElementById("post-72");
-        Elements ps = content.getElementsByClass("wp-block-code");
-        String ip = null;
-        String port = null;
-        String pass = null;
-        Element code = ps.get(0).getElementsByTag("code").get(0);
-        String[] ss = code.text().split("\n");
-        for (String str: ss) {
-            String text = str;
-            if (text != null && text.contains("IP：")) {
-                ip = text.substring(text.indexOf("IP：") + 3);
-            }
-            if (text != null && text.contains("端口：")) {
-                port = text.substring(text.indexOf("端口：") + 3);
-            }
-            if (text != null && text.contains("密码：")) {
-                pass = text.substring(text.indexOf("密码：") + 3);
-            }
-        }
+        Elements ps = content.getElementsByClass("wp-block-table");
+        AtomicReference<String> ip = new AtomicReference<>();
+        AtomicReference<String> port = new AtomicReference<>();
+        AtomicReference<String> pass = new AtomicReference<>();
+        ps.stream().forEach( e -> {
+            Elements trs = e.getElementsByTag("tr");
+            trs.stream().forEach(tr -> {
+                if(tr.getElementsByTag("td").size() == 0) {
+                    return;
+                }
+                if(tr.getElementsByTag("td").get(0).text().trim().contains("IP")){
+                    ip.set(tr.getElementsByTag("td").get(1).text().trim());
+                }
+                if(tr.getElementsByTag("td").get(0).text().trim().contains("端口")){
+                    port.set(tr.getElementsByTag("td").get(1).text().trim());
+                }
+                if(tr.getElementsByTag("td").get(0).text().trim().contains("密码")){
+                    pass.set(tr.getElementsByTag("td").get(1).text().trim());
+                }
+            });
+
+        });
+
         String config = FileUtils.readFile(new FileInputStream(new File("D:\\soft\\Goflyway\\config.ini")));
         Properties props = new Properties();
         props.load(new FileInputStream(new File("D:\\soft\\Goflyway\\config.ini")));
